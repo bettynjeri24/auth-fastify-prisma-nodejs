@@ -1,22 +1,22 @@
-### Intialization of the project
+# Intialization of the project
 yarn init
 
 ### Installation Instructions
 npx --package typescript tsc --init
- # RUN
+### RUN
  yarn add @prisma/client fastify fastify-zod zod zod-to-json-schema fastify-jwt
- # RUN
+### RUN
 yarn add ts-node-dev typescript @types/node --dev 
 
  
- # Set up the run script
+### Set up the run script
 
  script:{
     "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts"
  }
 
 
- # RUN
+ ### RUN
  yarn dev or yarn start
 
  # Initialize prisma
@@ -32,7 +32,10 @@ yarn add ts-node-dev typescript @types/node --dev
 
 DATABASE_URL="postgresql://postgres:""@localhost:5432/auth-fastify-prisma-nodejs?schema=public"
 
-
+# Learning Materials
+### https://youtu.be/LMoMHP44-xM
+YouTube video
 ### PostgreSQL Database (https://www.postgresqltutorial.com/postgresql-administration/psql-commands/)
+PostgreSQL Database commands
 psql –U postgres
 
