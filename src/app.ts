@@ -1,9 +1,35 @@
-import Fastify from "fastify";
-
+require('dotenv').config();
+import Fastify, { FastifyRequest, FastifyReply } from "fastify";
+import fjwt from "@fastify/jwt";
 import userRoutes from "./modules/user/user.routes";
 import { userSchemas } from "./modules/user/user.schema";
-const server = Fastify();
+// server
+export const server = Fastify();
 
+//
+declare module "fastify" {
+  export interface FastifyInstance {
+    authenticate:any;
+  }
+}
+//
+server.register(fjwt,
+  {
+    secret: "process.env.JWT_SECRET",
+  });
+//
+server.decorate(
+  "authenticate",
+  async (request: FastifyRequest, reply: FastifyReply) => {
+    try {
+      await request.jwtVerify();
+    } catch (error) {
+      return reply.send(error);
+    }
+  }
+);
+
+// Test APi
 server.get("/api", async function (req, res) {
   return { status: 200, body: "Daiel" };
 });
@@ -14,7 +40,7 @@ async function main() {
   for (const schema of userSchemas) {
     server.addSchema(schema);
   }
-  //This is to add a route for our user routes 
+  //This is to add a route for our user routes
   server.register(userRoutes, { prefix: "api/user" });
 
   //this is how fastify is started

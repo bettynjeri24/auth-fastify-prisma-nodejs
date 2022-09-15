@@ -4,7 +4,7 @@ yarn init
 ### Installation Instructions
 npx --package typescript tsc --init
 ### RUN
- yarn add @prisma/client fastify fastify-zod zod zod-to-json-schema fastify-jwt
+ yarn add @prisma/client fastify fastify-zod zod zod-to-json-schema fastify-jwt @fastify/jwt@5.0.0
 ### RUN
 yarn add ts-node-dev typescript @types/node --dev 
 

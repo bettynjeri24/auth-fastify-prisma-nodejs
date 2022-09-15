@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts"
- },
+  },
   "dependencies": {
+    "@fastify/jwt": "5.0.0",
     "@prisma/client": "^4.3.1",
+    "dotenv": "^16.0.2",
     "fastify": "^4.6.0",
     "fastify-jwt": "^4.2.0",
     "fastify-zod": "^1.2.0",

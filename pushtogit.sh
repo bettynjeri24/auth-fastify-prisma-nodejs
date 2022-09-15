@@ -9,8 +9,6 @@
 #DEVELOPER DANIEL KIMANI (0769219440 danmigwi24@gmail.com)
 
 
-CI_PROJECT_DIR=$(pwd)
-
 COMMENT_ARGUMENT="$1"
 
 git add .
