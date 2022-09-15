@@ -34,10 +34,14 @@ async function userRoutes(server: FastifyInstance) {
     },
     loginUserHandler
   );
-
-  server.get("/",{
-preHandler:[server.authenticate]
-  }, getUserHandler);
+  //Get user information
+  server.get(
+    "/",
+    {
+      preHandler: [server.authenticate],
+    },
+    getUserHandler
+  );
 }
 
 export default userRoutes;
