@@ -1,22 +1,22 @@
-require('dotenv').config();
+require("dotenv").config();
 import Fastify, { FastifyRequest, FastifyReply } from "fastify";
 import fjwt from "@fastify/jwt";
 import userRoutes from "./modules/user/user.routes";
 import { userSchemas } from "./modules/user/user.schema";
+import { productSchemas } from "./modules/products/products.schema";
 // server
 export const server = Fastify();
 
 //
 declare module "fastify" {
   export interface FastifyInstance {
-    authenticate:any;
+    authenticate: any;
   }
 }
 //
-server.register(fjwt,
-  {
-    secret: "process.env.JWT_SECRET",
-  });
+server.register(fjwt, {
+  secret: "process.env.JWT_SECRET",
+});
 //
 server.decorate(
   "authenticate",
@@ -37,7 +37,7 @@ server.get("/api", async function (req, res) {
 async function main() {
   //this is to add schema validation for our responses and requests
   //and alos whitelist the files that we need to view in response
-  for (const schema of userSchemas) {
+  for (const schema of [...userSchemas, ...productSchemas]) {
     server.addSchema(schema);
   }
   //This is to add a route for our user routes
