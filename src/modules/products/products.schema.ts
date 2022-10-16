@@ -6,11 +6,11 @@ import { buildJsonSchemas } from "fastify-zod";
 const productInput = {
   title: z.string(),
   price: z.string(),
-  content: z.string(),
+  content: z.string().optional(),
 };
 
 const productGenerated = {
-  id: z.number(),
+ // id: z.number(),
   createdAt: z.string(),
   updatedAt: z.string(),
 };

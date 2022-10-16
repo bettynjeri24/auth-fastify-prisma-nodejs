@@ -2,6 +2,7 @@ require("dotenv").config();
 import Fastify, { FastifyRequest, FastifyReply } from "fastify";
 import fjwt from "@fastify/jwt";
 import userRoutes from "./modules/user/user.routes";
+import productRoutes from "./modules/products/products.routes";
 import { userSchemas } from "./modules/user/user.schema";
 import { productSchemas } from "./modules/products/products.schema";
 // server
@@ -17,11 +18,11 @@ declare module "fastify" {
 //
 declare module "@fastify/jwt" {
   interface FastifyJWT {
-    user:{
-      id:number;
+    user: {
+      id: number;
       email: string;
       name: string;
-    }
+    };
   }
 }
 //
@@ -41,11 +42,11 @@ server.decorate(
 );
 
 // Test APi
-server.get("/api", async function (req, res) {
+server.get("/api", async () => {
   return { status: 200, body: "Daiel" };
 });
 
-async function main() {
+const main = async () => {
   //this is to add schema validation for our responses and requests
   //and alos whitelist the files that we need to view in response
   for (const schema of [...userSchemas, ...productSchemas]) {
@@ -54,14 +55,19 @@ async function main() {
   //This is to add a route for our user routes
   server.register(userRoutes, { prefix: "api/user" });
 
+  //This is to add a route for our products routes
+  server.register(productRoutes, { prefix: "api/product" });
+
   //this is how fastify is started
   try {
     await server.listen(3002, "0.0.0.0");
-    console.log("Server listening on host http://localhost:3000 on port 3000");
+    console.log(
+      `\n\nServer listening on host http://localhost:3000 on port 3000\n`
+    );
   } catch (error) {
     console.log(error);
     process.exit(1);
   }
-}
+};
 
 main();
