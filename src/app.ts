@@ -45,7 +45,7 @@ async function main() {
 
   //this is how fastify is started
   try {
-    await server.listen(3000, "0.0.0.0");
+    await server.listen(3002, "0.0.0.0");
     console.log("Server listening on host http://localhost:3000 on port 3000");
   } catch (error) {
     console.log(error);
